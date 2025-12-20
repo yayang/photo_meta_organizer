@@ -1,0 +1,9 @@
+{
+    "task": "clean-junk",
+    "_comment": "Moves files smaller than threshold MB to a 'junk' folder.",
+    "input_dirs": [
+        "/path/to/scan_dir"
+    ],
+    "threshold": 0.5,
+    "dry_run": true
+}

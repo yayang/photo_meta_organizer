@@ -1,0 +1,55 @@
+# 照片元数据整理工具 - 配置文件
+# 使用说明：复制此文件为 config.yaml，然后修改为你的实际路径
+
+# ==================== 目录配置 ====================
+directories:
+  # 照片源目录（用于 organize 命令）
+  source: "/Volumes/Photo_Source"
+  
+  # 照片目标目录（用于 organize 命令）
+  destination: "/Volumes/Photo_Dest"
+  
+  # 元数据修复目录（用于 fix 命令）
+  # 通常是扫描老照片的存放位置
+  fix_dir: "/Volumes/photo_backup/Scanning"
+  
+  # 重命名目标目录（用于 rename 命令）
+  target_dir: "/path/to/target"
+  
+  # 垃圾文件清理根目录（用于 clean-junk 命令）
+  root_dir: "/path/to/root"
+
+# ==================== 通用设置 ====================
+settings:
+  # 默认是否启用演习模式（true=只打印不执行，false=真实执行）
+  dry_run: true
+  
+  # 垃圾文件大小阈值（单位：MB）
+  # 小于等于此大小的文件会被 clean-junk 命令移动到 junk 目录
+  size_threshold_mb: 0.01
+
+# ==================== 文件扩展名配置 ====================
+extensions:
+  # 支持的图片格式
+  image:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".heic"
+    - ".tiff"
+    - ".cr3"
+    - ".arw"
+    - ".bmp"
+    - ".dng"
+  
+  # 支持的视频格式
+  video:
+    - ".mp4"
+    - ".mov"
+    - ".avi"
+    - ".mkv"
+    - ".m4v"
+    - ".3gp"
+    - ".mpg"
+    - ".mpeg"
+    - ".vob"

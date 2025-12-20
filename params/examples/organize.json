@@ -1,0 +1,9 @@
+{
+    "task": "organize",
+    "_comment": "Scans input_dirs and organizes photos into output_dir by date.",
+    "input_dirs": [
+        "/path/to/source_photos"
+    ],
+    "output_dir": "/path/to/organized_photos",
+    "dry_run": true
+}

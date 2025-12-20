@@ -1,24 +1,40 @@
-# photo_meta_organizer
+# Photo Meta Organizer
 
-# 功能1, 根据照片元数据, 移动照片到目标目录
-- 指定目录后, 扫描目录中所有照片, 根据照片元数据, 分配到目标文件夹中按时间分配的目录中. 
-- 同名文件会重命名并保留
-  - 需要去重/去similar的话, Mac用户请使用工具czkawka
-```
-例子:
-Inbox/IMG1879.jpg               // 元数据2024-12
-Inbox/2024/12 绍兴/鲁迅故居.jpg   // 文件夹包含的中文, 会保留
-Inbox/2024/2023-12.jpg          // 所在目录不影响最终位置
+一键式照片整理工具：按时间归档、修复元数据、批量重命名及清理垃圾文件。
 
-整理后
-Library/2020+/2023/2023-12/2023-12.jpg
-Library/2020+/2024/2024-12/IMG1879.jpg
-Library/2020+/2024/2024-12 绍兴/鲁迅故居.jpg
+## ✨ 核心功能
+*   **Organize**: 自动按 `年份/月份` 归档照片 (支持 EXIF/文件时间)。
+*   **Fix**: 修复老照片元数据 (基于文件夹名称)。
+*   **Rename**: 标准化重命名 (`YYYYMMDD_HHMMSS_原名`).
+*   **Clean Junk**: 清理小文件。
+
+## 🚀 快速开始
+
+### 1. 配置
+复制示例配置并修改（推荐设定 `input_dirs` 和 `output_dir`）：
+```bash
+cp params/examples/organize.json params/my_run.json
+vim params/my_run.json
 ```
 
-# 功能2, 照片元数据修复
-- 根据照片所在目录, 修复照片的元数据, 修复到月份,
-- 日期默认是2号, 避免污染节日池(大部分节日是1号)
+### 2. 运行
+默认开启演习模式 (`dry_run: true`)，安全无忧：
+```bash
+make run config=params/my_run.json
 ```
-Inbox/扫描老照片/1995/1995-12/扫描照片1
+
+### 3. 帮助
+查看所有命令和任务说明：
+```bash
+make help
 ```
+
+## 📖 文档与结构
+详细说明请参阅 [用户手册](docs/user_manual.md)。
+
+*   `params/` - 配置文件 (含 `examples/` 模板)
+*   `src/` - 源代码
+*   `Makefile` - 项目入口
+
+## 📄 许可证
+MIT License

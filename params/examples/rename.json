@@ -1,0 +1,8 @@
+{
+    "task": "rename",
+    "_comment": "Renames photos to YYYYMMDD_HHMMSS_OriginalName.ext format.",
+    "input_dirs": [
+        "/path/to/photos_to_rename"
+    ],
+    "dry_run": true
+}
