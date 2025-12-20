@@ -1,0 +1,26 @@
+# Photo Meta Organizer - 配置文件
+
+# ==================== 文件扩展名 ====================
+# 定义被视为图片或视频的后缀，只有这里的后缀会被处理
+extensions:
+  image:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".heic"
+    - ".tiff"
+    - ".cr3"
+    - ".arw"
+    - ".bmp"
+    - ".dng"
+  
+  video:
+    - ".mp4"
+    - ".mov"
+    - ".avi"
+    - ".mkv"
+    - ".m4v"
+    - ".3gp"
+    - ".mpg"
+    - ".mpeg"
+    - ".vob"

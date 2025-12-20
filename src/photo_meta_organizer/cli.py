@@ -199,8 +199,13 @@ def run_task(
     # Load base config
     config = load_config()
 
+    # Ensure structure exists
+    config.setdefault("directories", {})
+    config.setdefault("settings", {})
+
     # Common params
-    dry_run = params.get("dry_run", config["settings"].get("dry_run", True))
+    # Default dry_run to True if not specified anywhere (Safety first)
+    dry_run = params.get("dry_run", config.get("settings", {}).get("dry_run", True))
     input_dirs = params.get("input_dirs", [])
     output_dir = params.get("output_dir")
 
@@ -215,6 +220,9 @@ def run_task(
         if output_dir:
             config["directories"]["destination"] = output_dir
 
+        # Ensure settings exist for service consumption
+        config.setdefault("settings", {})["dry_run"] = dry_run
+
         result = service_organize(config=config, dry_run=dry_run, verbose=verbose)
 
     elif task_name == "fix":
@@ -223,6 +231,8 @@ def run_task(
         if input_dirs:
             config["directories"]["fix_dir"] = input_dirs[0]
 
+        config.setdefault("settings", {})["dry_run"] = dry_run
+
         result = run_fix(config=config, dry_run=dry_run, verbose=verbose)
 
     elif task_name == "rename":
@@ -230,6 +240,8 @@ def run_task(
 
         if input_dirs:
             config["directories"]["target_dir"] = input_dirs[0]
+
+        config.setdefault("settings", {})["dry_run"] = dry_run
 
         result = rename_process(config=config, dry_run=dry_run, verbose=verbose)
 
@@ -241,10 +253,17 @@ def run_task(
         if input_dirs:
             config["directories"]["root_dir"] = input_dirs[0]
 
-        # Specific param for clean-junk
+        # Specific param for clean-junk: threshold
+        # 1. Try params['threshold']
+        # 2. Try params['size_threshold_mb']
+        # 3. Try config['settings']['size_threshold_mb']
+        # 4. Default to 0.01 MB
         threshold = params.get("threshold") or params.get("size_threshold_mb")
-        if threshold:
-            config["settings"]["size_threshold_mb"] = float(threshold)
+        if not threshold:
+            threshold = config.get("settings", {}).get("size_threshold_mb", 0.01)
+
+        config.setdefault("settings", {})["size_threshold_mb"] = float(threshold)
+        config.setdefault("settings", {})["dry_run"] = dry_run
 
         result = clean_small_files_recursive(
             config=config, dry_run=dry_run, verbose=verbose

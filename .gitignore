@@ -17,7 +17,7 @@ __pycache__/
 # C extensions
 *.so
 
-# Distribution / packaging
+# Distribution / Packaging
 .Python
 build/
 develop-eggs/
@@ -30,6 +30,7 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -80,6 +81,3 @@ uv.lock
 # MacOS
 .DS_Store
 
-# 用户配置文件（包含私密路径）
-config.yaml
-!config.example.yaml

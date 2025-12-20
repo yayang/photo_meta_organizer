@@ -35,11 +35,8 @@ def load_config(config_path: Optional[str] = None) -> Dict[str, Any]:
         FileNotFoundError: If the configuration file does not exist.
         yaml.YAMLError: If the configuration file is malformed.
     """
-    if config_path is None:
-        # Default to config.yaml in project root
-        config_path_obj = get_project_root() / "config.yaml"
-    else:
-        config_path_obj = Path(config_path)
+    # Default to config.yaml in project root
+    config_path_obj = get_project_root() / "config.yaml"
 
     if not config_path_obj.exists():
         raise FileNotFoundError(
